@@ -1,4 +1,4 @@
-Algorithms reliazed in this repository are as follows:
+Algorithms realized in this repository are as follows:
 
 alg/EWnLOPT_fast.m ----- AutoS2AE
 alg/EASE.m -------- EASE
