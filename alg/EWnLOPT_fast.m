@@ -45,7 +45,7 @@ for i=1:max_iter
     fprintf(f, '\niter %d', i);
     fprintf(f, '\nalpha=%f, beta=%f', alpha, beta);
     if (~isempty(test))
-        tic;metric = evaluate_item(R_t+R_v, test, P, Q, 200, 200);toc;
+        tic;metric = evaluate_item(R_t+R_v, test, P, Q.', 200, 200);toc;
         
         if i == 1
             output_metric = {metric, alpha, beta};
@@ -149,11 +149,18 @@ function [neighbers] = KNN_neighbers(R)
     [M,N] = size(R);
     R=R*1./sqrt(sum(R.^2,1)); % norm
     k = floor(0.1*N);
-    neighbers = sparse(N,N);
     similarity = R'*R;
-    s1 = maxk(similarity, k, 1);
-    s2 = mink(s1, 1, 1);
-    neighbers = similarity>s2;
+    similarity(1:N+1:end) = 0;
+    [s1, ind] = maxk(similarity, k, 1);
+    col = ones(size(ind));
+    for i = 2:N
+        col(:,i)=i;
+    end
+    col = col(:);
+    ind = ind(:);
+    neighbers = sparse(ind, col, 1, N, N);
+    % s2 = mink(s1, 1, 1);
+    % neighbers = similarity>s2;
 end
 
 function [P, Q, parBalpha, parBbeta] = ease_weight(R, v_idx, alpha, beta, fun, neighber_mat)
