@@ -15,7 +15,7 @@ tic;[P, Q] = ease(R, alpha, beta, fun);toc;
 fprintf('Start testing');
 
 if (~isempty(test))
-    tic;metric = evaluate_item(R+R_v, test, P, Q, 200, 200);toc;
+    tic;metric = evaluate_item(R+R_v, test, P, Q.', 200, 200);toc;
     if isexplict(test)
         fprintf('\nrecall@10,20,50=%.3f,%.3f,%.3f', metric.item_recall_like(1,10), metric.item_recall_like(1,20), metric.item_recall_like(1,50));
         fprintf('\nndcg@10,20,50=%.3f,%.3f,%.3f', metric.item_ndcg_like(1,10), metric.item_ndcg_like(1,20), metric.item_ndcg_like(1,50));
