@@ -13,3 +13,4 @@ To run the code, please refer to run_baseline.m(Datasets should be prepared.) Us
 > run_baseline
 
 to generate desired outputs.
+(Datasets should be prepared in advance)
