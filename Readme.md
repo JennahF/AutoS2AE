@@ -1,3 +1,4 @@
+This repository contains the code of paper AutoS$^2$AE: Automate to Regularize Sparse Shallow Autoencoders for Recommendation(WWW'23)
 Algorithms realized in this repository are as follows:
 
 alg/EWnLOPT_fast.m ----- AutoS2AE
