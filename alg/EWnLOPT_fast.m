@@ -48,9 +48,9 @@ for i=1:max_iter
         tic;metric = evaluate_item(R_t+R_v, test, P, Q.', 200, 200);toc;
         
         if i == 1
-            output_metric = {metric, alpha, beta};
-        elseif metric.item_recall(1,10) >= output_metric{1}.item_recall(1,10)
-            output_metric = {metric, alpha, beta};
+            output_metric = metric;
+        elseif metric.item_recall(1,10) >= output_metric.item_recall(1,10)
+            output_metric = metric;
         end
         
         if isexplict(test)
